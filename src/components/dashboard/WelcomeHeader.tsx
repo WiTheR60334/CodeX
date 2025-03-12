@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CalendarDays, Flame, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -25,15 +24,7 @@ const WelcomeHeader: React.FC<WelcomeHeaderProps> = ({
   });
 
   return (
-    <section className="relative w-full glass-dark rounded-2xl p-6 md:p-8 overflow-hidden animate-fade-in">
-      {/* Progress tracker */}
-      <div className="absolute bottom-0 left-0 h-1.5 bg-primary/20 w-full">
-        <div 
-          className="h-full bg-primary transition-all duration-1000 ease-out"
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
-      
+    <section className="bg-background border border-border rounded-lg p-6 mb-8">
       <div className="md:flex items-start justify-between">
         <div>
           <p className="text-sm text-muted-foreground mb-1">{formattedDate}</p>
@@ -42,7 +33,6 @@ const WelcomeHeader: React.FC<WelcomeHeaderProps> = ({
           </h1>
           
           <div className="flex items-center gap-4 md:gap-6 mt-2">
-            {/* Streak counter */}
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                 <Flame className="h-5 w-5 text-primary" />
@@ -55,7 +45,6 @@ const WelcomeHeader: React.FC<WelcomeHeaderProps> = ({
               </div>
             </div>
             
-            {/* Rank */}
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                 <Trophy className="h-5 w-5 text-primary" />
@@ -68,7 +57,6 @@ const WelcomeHeader: React.FC<WelcomeHeaderProps> = ({
               </div>
             </div>
             
-            {/* Next goal */}
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                 <CalendarDays className="h-5 w-5 text-primary" />
@@ -79,15 +67,6 @@ const WelcomeHeader: React.FC<WelcomeHeaderProps> = ({
               </div>
             </div>
           </div>
-        </div>
-        
-        <div className="mt-6 md:mt-0 flex gap-3">
-          <Button className="rounded-lg">
-            Start New Challenge
-          </Button>
-          <Button variant="outline" className="rounded-lg">
-            View Progress
-          </Button>
         </div>
       </div>
     </section>

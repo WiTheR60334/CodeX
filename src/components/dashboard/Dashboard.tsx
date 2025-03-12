@@ -1,7 +1,6 @@
-
 import React from 'react';
 import WelcomeHeader from './WelcomeHeader';
-import ChallengeCard, { ChallengeProps } from './ChallengeCard';
+import ChallengeCard from './ChallengeCard';
 import ActivityFeed from './ActivityFeed';
 import LeaderboardWidget from './LeaderboardWidget';
 
@@ -53,62 +52,62 @@ const recommendedChallenges: ChallengeProps[] = [
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="animate-fade-in">
-      <div className="mb-6">
+    <div className="pt-20 px-6">
+      <div className="max-w-7xl mx-auto">
         <WelcomeHeader 
-          username="Alex"
+          username="Romir"
           streak={7}
           rank={435}
           progress={65}
         />
-      </div>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Main content - Challenges */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Recommended challenges section */}
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">Recommended for You</h2>
-              <button className="text-sm text-primary font-medium hover:underline">
-                View All
-              </button>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Main content - Challenges */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Recommended challenges section */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold">Recommended for You</h2>
+                <button className="text-sm text-primary font-medium hover:underline">
+                  View All
+                </button>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {recommendedChallenges.slice(0, 2).map((challenge, index) => (
+                  <ChallengeCard 
+                    key={challenge.id} 
+                    {...challenge} 
+                  />
+                ))}
+              </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {recommendedChallenges.slice(0, 2).map((challenge, index) => (
-                <ChallengeCard 
-                  key={challenge.id} 
-                  {...challenge} 
-                />
-              ))}
+            {/* Trending challenges section */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold">Trending Challenges</h2>
+                <button className="text-sm text-primary font-medium hover:underline">
+                  View All
+                </button>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {recommendedChallenges.slice(2, 4).map((challenge, index) => (
+                  <ChallengeCard 
+                    key={challenge.id} 
+                    {...challenge} 
+                  />
+                ))}
+              </div>
             </div>
           </div>
           
-          {/* Trending challenges section */}
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">Trending Challenges</h2>
-              <button className="text-sm text-primary font-medium hover:underline">
-                View All
-              </button>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {recommendedChallenges.slice(2, 4).map((challenge, index) => (
-                <ChallengeCard 
-                  key={challenge.id} 
-                  {...challenge} 
-                />
-              ))}
-            </div>
+          {/* Activity Feed and Leaderboard */}
+          <div className="space-y-6">
+            <ActivityFeed />
+            <LeaderboardWidget />
           </div>
-        </div>
-        
-        {/* Sidebar - Activity and Leaderboard */}
-        <div className="space-y-6">
-          <ActivityFeed />
-          <LeaderboardWidget />
         </div>
       </div>
     </div>
@@ -116,3 +115,4 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
+

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRight, BrainCircuit, Code, LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,13 +5,7 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen pt-24 flex items-center justify-center overflow-hidden">
-      {/* Background gradients */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-80 w-[500px] h-[500px] bg-primary/20 rounded-full filter blur-3xl opacity-30 animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 -right-80 w-[500px] h-[500px] bg-primary/20 rounded-full filter blur-3xl opacity-30 animate-pulse-slow" style={{ animationDelay: "1s" }}></div>
-      </div>
-      
+    <section className="relative min-h-screen pt-24 flex items-center justify-center">
       <div className="container relative z-10 px-6 py-16 md:py-24 mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         {/* Hero content */}
         <div className="flex-1 text-center lg:text-left space-y-6 max-w-xl mx-auto lg:mx-0">
@@ -58,16 +51,16 @@ const HeroSection = () => {
         </div>
         
         {/* Hero image/illustration */}
-        <div className="flex-1 w-full max-w-lg animate-fade-in [animation-delay:500ms]">
-          <div className="relative w-full aspect-square rounded-2xl overflow-hidden glass-dark p-1">
-            <div className="absolute top-0 left-0 w-full h-12 z-10 flex items-center px-4">
+        <div className="flex-1 w-full max-w-lg">
+          <div className="relative w-full aspect-square rounded-lg overflow-hidden border border-border">
+            <div className="absolute top-0 left-0 w-full h-12 z-10 flex items-center px-4 border-b border-border">
               <div className="flex gap-2">
                 <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                 <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                 <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               </div>
             </div>
-            <div className="w-full h-full bg-card rounded-xl overflow-hidden">
+            <div className="w-full h-full bg-card overflow-hidden">
               <pre className="text-xs sm:text-sm text-left p-4 pt-14 font-mono overflow-hidden h-full">
                 <code className="language-javascript">
 {`// AI-powered debugging suggestion
@@ -112,8 +105,9 @@ function validateUserInput(code) {
                 </code>
               </pre>
             </div>
+            
             {/* AI assistant floating element */}
-            <div className="absolute bottom-4 right-4 glass px-4 py-3 rounded-full text-sm font-medium flex items-center gap-2 animate-float">
+            <div className="absolute bottom-4 right-4 bg-card px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 border border-border">
               <BrainCircuit className="h-4 w-4 text-primary" />
               <span>AI Assistant Active</span>
             </div>
