@@ -37,7 +37,7 @@ const Footer = () => {
               className="flex items-center gap-2 text-primary font-bold text-xl"
             >
               <Code className="h-6 w-6" />
-              <span>CodeNinja</span>
+              <span>CodeX</span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-xs">
               Empowering developers to write better code through AI-powered insights, personalized learning, and community challenges.
@@ -88,7 +88,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-12 pt-6 border-t border-border text-center text-sm text-muted-foreground">
-          <p>© {currentYear} CodeNinja. All rights reserved.</p>
+          <p>© {currentYear} CodeX. All rights reserved.</p>
         </div>
       </div>
     </footer>
