@@ -27,15 +27,16 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Features', path: '/#features' },
-    { name: 'Testimonials', path: '/#testimonials' },
+    { name: 'Problems', path: '/problems' },
+    { name: 'Contests', path: '/contests' },
+    { name: 'Leaderboard', path: '/leaderboard' },
+    { name: 'Community', path: '/community' },
   ];
 
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300 ease-in-out ${
-        isScrolled ? 'glass-dark shadow-md py-3' : 'bg-transparent'
+        isScrolled ? 'bg-background shadow-md py-3' : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -44,7 +45,7 @@ const Navbar = () => {
           className="flex items-center gap-2 text-primary font-bold text-xl"
         >
           <Code className="h-6 w-6" />
-          <span className="animate-blur-in">CodeNinja</span>
+          <span className="animate-blur-in">CodeX</span>
         </Link>
         
         {/* Mobile menu button */}
@@ -88,7 +89,7 @@ const Navbar = () => {
       
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="absolute top-full left-0 right-0 glass-dark shadow-lg p-4 lg:hidden animate-fade-in">
+        <div className="absolute top-full left-0 right-0 bg-background shadow-lg p-4 lg:hidden animate-fade-in">
           <nav className="flex flex-col gap-4 py-4">
             {navLinks.map((link) => (
               <Link
