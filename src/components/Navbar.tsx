@@ -8,7 +8,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Code, Settings, LogOut, UserRound, BarChart } from 'lucide-react';
+import { Code, Settings, LogOut, UserRound, BarChart, Menu, X } from 'lucide-react';
+import DarkModeToggle from '@/components/DarkModeToggle';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,39 +36,43 @@ const Navbar = () => {
   const renderAuthButtons = () => {
     if (isDashboard) {
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button 
-              variant="ghost" 
-              className="h-8 w-8 rounded-full border border-border"
-            >
-              <span className="font-semibold">R</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-48">
-            <DropdownMenuItem>
-              <BarChart className="mr-2 h-4 w-4" />
-              Progress
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <UserRound className="mr-2 h-4 w-4" />
-              Profile
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Settings className="mr-2 h-4 w-4" />
-              Settings
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-destructive">
-              <LogOut className="mr-2 h-4 w-4" />
-              Logout
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex items-center gap-2">
+          <DarkModeToggle />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="h-8 w-8 rounded-full border border-border"
+              >
+                <span className="font-semibold">R</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem>
+                <BarChart className="mr-2 h-4 w-4" />
+                Progress
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <UserRound className="mr-2 h-4 w-4" />
+                Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Settings className="mr-2 h-4 w-4" />
+                Settings
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-destructive">
+                <LogOut className="mr-2 h-4 w-4" />
+                Logout
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       );
     }
 
     return (
       <div className="hidden lg:flex items-center gap-4">
+        <DarkModeToggle />
         <Link to="/dashboard">
           <Button variant="outline" className="px-6">
             Log in
@@ -107,8 +112,50 @@ const Navbar = () => {
           ))}
         </nav>
         
+        {/* Mobile Menu Button */}
+        <button 
+          className="lg:hidden text-foreground"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
+        </button>
+        
         {renderAuthButtons()}
       </div>
+      
+      {/* Mobile Navigation Menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden bg-background border-b border-border">
+          <nav className="container mx-auto px-6 py-4 flex flex-col">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="py-2 text-foreground/80 hover:text-primary transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+            {!isDashboard && (
+              <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-border">
+                <Link to="/dashboard" onClick={() => setIsMenuOpen(false)}>
+                  <Button variant="outline" className="w-full">
+                    Log in
+                  </Button>
+                </Link>
+                <Link to="/dashboard" onClick={() => setIsMenuOpen(false)}>
+                  <Button className="w-full">Get Started</Button>
+                </Link>
+              </div>
+            )}
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
