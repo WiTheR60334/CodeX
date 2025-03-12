@@ -31,7 +31,7 @@ const recommendedChallenges: ChallengeProps[] = [
   {
     id: 'ch3',
     title: 'Event Loop Visualization',
-    description: 'Create a visual representation of JavaScript's event loop, including the call stack and callback queue.',
+    description: "Create a visual representation of JavaScript's event loop, including the call stack and callback queue.",
     difficulty: 'hard',
     estimatedTime: '90 min',
     participants: 567,

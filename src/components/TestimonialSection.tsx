@@ -29,7 +29,7 @@ const testimonials: Testimonial[] = [
     role: 'Full Stack Engineer',
     company: 'StartupX',
     avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
-    quote: 'I've tried many coding platforms, but this one stands out with its personalized challenges. It's like having a mentor who knows exactly what I need to learn next.',
+    quote: "I've tried many coding platforms, but this one stands out with its personalized challenges. It's like having a mentor who knows exactly what I need to learn next.",
     rating: 5
   },
   {
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
     role: 'CS Student',
     company: 'University of Tech',
     avatar: 'https://randomuser.me/api/portraits/men/67.jpg',
-    quote: 'As a student, the progressive difficulty curve helped me build confidence. The leaderboard keeps me motivated to practice daily—I've improved more in 3 months than in my entire year of studies.',
+    quote: "As a student, the progressive difficulty curve helped me build confidence. The leaderboard keeps me motivated to practice daily—I've improved more in 3 months than in my entire year of studies.",
     rating: 4
   },
   {
@@ -47,7 +47,7 @@ const testimonials: Testimonial[] = [
     role: 'Engineering Lead',
     company: 'GlobalSoft',
     avatar: 'https://randomuser.me/api/portraits/women/63.jpg',
-    quote: 'We've implemented this platform across our entire engineering team, and the results are remarkable. Our code quality has improved significantly, and onboarding new developers is much faster.',
+    quote: "We've implemented this platform across our entire engineering team, and the results are remarkable. Our code quality has improved significantly, and onboarding new developers is much faster.",
     rating: 5
   }
 ];
