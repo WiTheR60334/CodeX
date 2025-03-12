@@ -1,6 +1,7 @@
+
 import React from 'react';
 import WelcomeHeader from './WelcomeHeader';
-import ChallengeCard from './ChallengeCard';
+import ChallengeCard, { ChallengeProps } from './ChallengeCard';
 import ActivityFeed from './ActivityFeed';
 import LeaderboardWidget from './LeaderboardWidget';
 
@@ -115,4 +116,3 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
-
