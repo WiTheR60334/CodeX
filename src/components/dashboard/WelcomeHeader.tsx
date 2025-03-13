@@ -32,7 +32,7 @@ const WelcomeHeader: React.FC<WelcomeHeaderProps> = ({
             Welcome back, <span className="text-primary">{username}</span>!
           </h1>
           
-          <div className="flex items-center gap-4 md:gap-6 mt-2">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 mt-2">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                 <Flame className="h-5 w-5 text-primary" />
