@@ -10,6 +10,10 @@ import Editor from "@/components/Editor";
 import TestCases from "@/components/TestCases";
 import ProblemDescription from "@/components/ProblemDescription";
 import { CodeDebugger } from "@/components/CodeDebugger";
+import DarkModeToggle from '@/components/DarkModeToggle';
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 // Define a simple problem lookup object to simulate fetching problem details
 const problemTitles: Record<string, string> = {
@@ -35,6 +39,8 @@ const CodeEditor = () => {
   const [showProblem, setShowProblem] = useState(true);
   const [debugInfo, setDebugInfo] = useState<string[]>([]);
   const [problemTitle, setProblemTitle] = useState("");
+  const [showResults, setShowResults] = useState(false);
+  const isMobile = useIsMobile();
 
   // Set the problem title based on the problemId
   useEffect(() => {
@@ -53,6 +59,9 @@ const CodeEditor = () => {
         title: "Code executed successfully",
         description: "Your code passed all test cases!",
       });
+      if (isMobile) {
+        setShowResults(true);
+      }
     } catch (error) {
       toast({
         title: "Error",
@@ -64,7 +73,76 @@ const CodeEditor = () => {
     }
   };
 
-  return (
+  // Mobile view rendering for the editor and results
+  const renderMobileView = () => (
+    <div className="h-screen flex flex-col">
+      <header className="border-b p-2 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Link to="/problems">
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+          </Link>
+          <h1 className="text-sm font-semibold truncate max-w-[180px]">{problemTitle}</h1>
+        </div>
+        <div className="flex items-center gap-1">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[85vw] sm:w-[350px] overflow-auto">
+              <ProblemDescription problemId={problemId} />
+            </SheetContent>
+          </Sheet>
+          {/* <ThemeToggle /> */}
+          <DarkModeToggle />
+          <Button
+            variant="default"
+            onClick={handleRunCode}
+            disabled={isRunning}
+            size="sm"
+            className="h-8"
+          >
+            <Play className="h-3 w-3 mr-1" />
+            Run
+          </Button>
+        </div>
+      </header>
+
+      <div className="flex-grow overflow-hidden">
+        <div className="h-full relative">
+          <Editor code={code} setCode={setCode} onDebug={setDebugInfo} />
+          <CodeDebugger suggestions={debugInfo} />
+        </div>
+      </div>
+
+      <Drawer open={showResults} onOpenChange={setShowResults}>
+        <DrawerContent className="max-h-[60vh]">
+          <div className="mx-auto w-full max-w-md">
+            <div className="p-4 grid grid-cols-1 gap-4">
+              <div className="space-y-2">
+                <h3 className="text-base font-semibold">Test Cases</h3>
+                <TestCases problemId={problemId} />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-base font-semibold">Output</h3>
+                <div className="overflow-auto max-h-[150px]">
+                  <pre className="font-mono text-xs p-2 rounded-lg bg-muted whitespace-pre-wrap">
+                    {output || "Run your code to see the output..."}
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </DrawerContent>
+      </Drawer>
+    </div>
+  );
+
+  // Desktop view rendering
+  const renderDesktopView = () => (
     <div className="h-screen bg-background flex flex-col">
       <header className="border-b p-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -84,6 +162,7 @@ const CodeEditor = () => {
         </div>
         <div className="flex items-center gap-2">
           {/* <ThemeToggle /> */}
+          <DarkModeToggle />
           <Button
             variant="outline"
             onClick={() => setCode("")}
@@ -167,6 +246,8 @@ const CodeEditor = () => {
       </div>
     </div>
   );
+
+  return isMobile ? renderMobileView() : renderDesktopView();
 };
 
 export default CodeEditor;

@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface EditorProps {
   code: string;
@@ -11,6 +12,7 @@ interface EditorProps {
 const Editor = ({ code, setCode, onDebug }: EditorProps) => {
   const [lineNumbers, setLineNumbers] = useState<number[]>([1]);
   const [language, setLanguage] = useState("javascript");
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const lines = code.split("\n").length;
@@ -91,7 +93,7 @@ const Editor = ({ code, setCode, onDebug }: EditorProps) => {
       </div>
       <ScrollArea className="flex-1">
         <div className="flex">
-          <div className="p-4 bg-muted text-muted-foreground text-right select-none w-12 font-mono text-sm">
+          <div className={`p-2 md:p-4 bg-muted text-muted-foreground text-right select-none ${isMobile ? 'w-8' : 'w-12'} font-mono text-xs md:text-sm`}>
             {lineNumbers.map((num) => (
               <div key={num}>{num}</div>
             ))}
@@ -99,9 +101,10 @@ const Editor = ({ code, setCode, onDebug }: EditorProps) => {
           <textarea
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="flex-1 p-4 font-mono text-sm bg-transparent outline-none resize-none min-h-full"
+            className="flex-1 p-2 md:p-4 font-mono text-xs md:text-sm bg-transparent outline-none resize-none min-h-full"
             placeholder="Write your code here..."
             spellCheck={false}
+            style={{ fontSize: isMobile ? '13px' : '14px' }}
           />
         </div>
       </ScrollArea>
