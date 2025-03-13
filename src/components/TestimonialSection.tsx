@@ -110,99 +110,196 @@ const TestimonialSection = () => {
 
   return (
     <section id="testimonials" className="py-24">
-      <div className="container mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            What Our Users Say
-          </h2>
-          <p className="text-muted-foreground">
-            Discover how developers around the world are transforming their coding skills with our platform.
-          </p>
-        </div>
-        
-        <div className="relative max-w-4xl mx-auto">
-          <div className="relative overflow-hidden rounded-lg border border-border bg-card p-8 md:p-10">
-            <div className="relative z-10">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={testimonial.id}
-                  className={`transition-all duration-500 ease-in-out absolute inset-0 ${
-                    index === activeIndex 
-                      ? 'opacity-100 translate-x-0' 
-                      : 'opacity-0 translate-x-full'
-                  }`}
-                  style={{ display: index === activeIndex ? 'block' : 'none' }}
-                >
-                  <div className="md:flex items-start gap-8">
-                    <div className="mb-6 md:mb-0">
-                      <div className="rounded-lg overflow-hidden h-20 w-20 md:h-24 md:w-24 border border-border">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+  <div className="container mx-auto px-6">
+    <div className="text-center max-w-2xl mx-auto mb-16">
+      <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        What Our Users Say
+      </h2>
+      <p className="text-muted-foreground">
+        Discover how developers around the world are transforming their coding skills with our platform.
+      </p>
+    </div>
+
+    <div className="relative max-w-4xl mx-auto">
+      {/* Wrapper for correct positioning of arrows */}
+      <div className="relative flex items-center">
+        {/* Left Button */}
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute left-0 -translate-x-12 hidden md:flex z-20"
+          onClick={handlePrevious}
+          disabled={isAnimating}
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+
+        {/* Testimonial Content */}
+        <div className="relative overflow-hidden rounded-lg border border-border bg-card p-8 md:p-5 flex-1">
+          <div className="relative z-10 min-h-[200px] flex items-center">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={testimonial.id}
+                className={`transition-opacity duration-500 ease-in-out ${
+                  index === activeIndex ? 'opacity-100 block' : 'opacity-0 hidden'
+                }`}
+              >
+                <div className="md:flex items-start gap-8">
+                  {/* Image */}
+                  <div className="mb-6 md:mb-0">
+                    <div className="rounded-lg overflow-hidden h-20 w-20 md:h-24 md:w-24 border border-border">
+                      <img
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    
-                    <div className="flex-1">
-                      <p className="text-lg mb-6">
-                        "{testimonial.quote}"
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="flex-1">
+                    <p className="text-lg mb-6">"{testimonial.quote}"</p>
+                    <div>
+                      <h4 className="font-semibold">{testimonial.name}</h4>
+                      <p className="text-sm text-muted-foreground">
+                        {testimonial.role} at {testimonial.company}
                       </p>
-                      
-                      <div>
-                        <h4 className="font-semibold">{testimonial.name}</h4>
-                        <p className="text-sm text-muted-foreground">
-                          {testimonial.role} at {testimonial.company}
-                        </p>
-                      </div>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-            
-            <div className="flex justify-center mt-8 gap-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    if (isAnimating) return;
-                    setIsAnimating(true);
-                    setActiveIndex(index);
-                    setTimeout(() => setIsAnimating(false), 600);
-                  }}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === activeIndex 
-                      ? 'bg-primary w-4' 
-                      : 'bg-primary/30'
-                  }`}
-                />
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-          
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 hidden md:flex"
-            onClick={handlePrevious}
-            disabled={isAnimating}
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
-          
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 hidden md:flex"
-            onClick={handleNext}
-            disabled={isAnimating}
-          >
-            <ChevronRight className="h-4 w-4" />
-          </Button>
         </div>
+
+        {/* Right Button */}
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute right-0 translate-x-12 hidden md:flex z-20"
+          onClick={handleNext}
+          disabled={isAnimating}
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
       </div>
-    </section>
+
+      {/* Navigation Dots */}
+      <div className="flex justify-center mt-8 gap-2">
+        {testimonials.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              if (isAnimating) return;
+              setIsAnimating(true);
+              setActiveIndex(index);
+              setTimeout(() => setIsAnimating(false), 600);
+            }}
+            className={`w-2 h-2 rounded-full transition-all ${
+              index === activeIndex ? 'bg-primary w-4' : 'bg-primary/30'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    // <section id="testimonials" className="py-24">
+    //   <div className="container mx-auto px-6">
+    //     <div className="text-center max-w-2xl mx-auto mb-16">
+    //       <h2 className="text-3xl md:text-4xl font-bold mb-6">
+    //         What Our Users Say
+    //       </h2>
+    //       <p className="text-muted-foreground">
+    //         Discover how developers around the world are transforming their coding skills with our platform.
+    //       </p>
+    //     </div>
+        
+    //     <div className="relative max-w-4xl mx-auto">
+    //       <div className="relative overflow-hidden rounded-lg border border-border bg-card p-8 md:p-5">
+    //         <div className="relative z-10">
+    //           {testimonials.map((testimonial, index) => (
+    //             <div
+    //               key={testimonial.id}
+    //               className={`transition-all duration-500 ease-in-out absolute inset-0 ${
+    //                 index === activeIndex 
+    //                   ? 'opacity-100 translate-x-0' 
+    //                   : 'opacity-0 translate-x-full'
+    //               }`}
+    //               style={{ display: index === activeIndex ? 'block' : 'none' }}
+    //             >
+    //               <div className="md:flex items-start gap-8">
+    //                 <div className="mb-6 md:mb-0">
+    //                   <div className="rounded-lg overflow-hidden h-20 w-20 md:h-24 md:w-24 border border-border">
+    //                     <img
+    //                       src={testimonial.avatar}
+    //                       alt={testimonial.name}
+    //                       className="w-full h-full object-cover"
+    //                     />
+    //                   </div>
+    //                 </div>
+                    
+    //                 <div className="flex-1">
+    //                   <p className="text-lg mb-6">
+    //                     "{testimonial.quote}"
+    //                   </p>
+                      
+    //                   <div>
+    //                     <h4 className="font-semibold">{testimonial.name}</h4>
+    //                     <p className="text-sm text-muted-foreground">
+    //                       {testimonial.role} at {testimonial.company}
+    //                     </p>
+    //                   </div>
+    //                 </div>
+    //               </div>
+    //             </div>
+    //           ))}
+    //         </div>
+            
+    //         <div className="flex justify-center mt-8 gap-2">
+    //           {testimonials.map((_, index) => (
+    //             <button
+    //               key={index}
+    //               onClick={() => {
+    //                 if (isAnimating) return;
+    //                 setIsAnimating(true);
+    //                 setActiveIndex(index);
+    //                 setTimeout(() => setIsAnimating(false), 600);
+    //               }}
+    //               className={`w-2 h-2 rounded-full transition-all ${
+    //                 index === activeIndex 
+    //                   ? 'bg-primary w-4' 
+    //                   : 'bg-primary/30'
+    //               }`}
+    //             />
+    //           ))}
+    //         </div>
+    //       </div>
+          
+    //       <Button
+    //         variant="outline"
+    //         size="icon"
+    //         className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 hidden md:flex"
+    //         onClick={handlePrevious}
+    //         disabled={isAnimating}
+    //       >
+    //         <ChevronLeft className="h-4 w-4" />
+    //       </Button>
+          
+    //       <Button
+    //         variant="outline"
+    //         size="icon"
+    //         className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 hidden md:flex"
+    //         onClick={handleNext}
+    //         disabled={isAnimating}
+    //       >
+    //         <ChevronRight className="h-4 w-4" />
+    //       </Button>
+    //     </div>
+    //   </div>
+    // </section>
   );
 };
 

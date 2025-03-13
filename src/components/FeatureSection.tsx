@@ -107,7 +107,7 @@ const FeatureSection = () => {
             </div>
             
             <div className="relative aspect-video w-full rounded-xl overflow-hidden glass p-1">
-              <div className="relative w-full h-full bg-card rounded-lg overflow-hidden">
+              <div className="relative w-full h-full bg-card rounded-lg border-2 overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-10 flex items-center gap-2 px-4 border-b border-border">
                   <div className="flex gap-2">
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>

@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Link } from 'react-router-dom';
 import { 
   Filter, 
   Search, 
@@ -103,10 +105,15 @@ const getTopicName = (topicId: string) => {
 
 // Problem card component
 const ProblemCard = ({ problem }: { problem: Problem }) => {
+  const navigate = useNavigate();
   const difficultyColor = {
     easy: 'bg-green-500/10 text-green-500',
     medium: 'bg-orange-500/10 text-orange-500',
     hard: 'bg-red-500/10 text-red-500',
+  };
+
+  const handleSolveClick = () => {
+    navigate(`/editor/${problem.id}`);
   };
 
   return (
@@ -150,8 +157,11 @@ const ProblemCard = ({ problem }: { problem: Problem }) => {
             Success: {problem.successRate}%
           </div>
         </div>
-        
-        <Button size="sm" className="rounded-full gap-1">
+        <Button 
+          size="sm" 
+          className="rounded-full gap-1" 
+          onClick={handleSolveClick}
+        >
           Solve <ArrowRight className="h-3.5 w-3.5" />
         </Button>
       </CardFooter>
@@ -161,6 +171,7 @@ const ProblemCard = ({ problem }: { problem: Problem }) => {
 
 // Main Problems Page
 const Problems = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>('all');
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);

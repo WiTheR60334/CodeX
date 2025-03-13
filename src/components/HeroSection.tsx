@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen pt-24 flex items-center justify-center">
-      <div className="container relative z-10 px-6 py-16 md:py-24 mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <div className="container justify-center relative z-10 px-6 py-16 md:py-24 mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         {/* Hero content */}
-        <div className="flex-1 text-center lg:text-left space-y-6 max-w-xl mx-auto lg:mx-0">
+        <div className="flex-1 text-center lg:text-left space-y-6 max-w-xl-40 mx-auto lg:mx-0">
           <span className="inline-block text-sm font-semibold px-4 py-1 rounded-full bg-primary/10 text-primary animate-fade-in">
             Powered by AI
           </span>
@@ -52,7 +52,7 @@ const HeroSection = () => {
         
         {/* Hero image/illustration */}
         <div className="flex-1 w-full max-w-lg">
-          <div className="relative w-full aspect-square rounded-lg overflow-hidden border border-border">
+          <div className="relative w-full aspect-square rounded-lg overflow-hidden border-2 border-border">
             <div className="absolute top-0 left-0 w-full h-12 z-10 flex items-center px-4 border-b border-border">
               <div className="flex gap-2">
                 <div className="w-3 h-3 bg-red-500 rounded-full"></div>
