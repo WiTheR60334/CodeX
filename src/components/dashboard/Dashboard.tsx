@@ -54,7 +54,7 @@ const recommendedChallenges: ChallengeProps[] = [
 const Dashboard: React.FC = () => {
   return (
     <div className="pt-20 px-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto mt-[-3.5rem] md:mt-0" >
         <WelcomeHeader 
           username="Romir"
           streak={7}
