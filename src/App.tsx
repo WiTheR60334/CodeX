@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Problems from "./pages/Problems";
 import Leaderboard from "./pages/Leaderboard";
+import Contests from "./pages/Contests";
+import CreateContest from "./pages/CreateContest";
 import CodeEditor from "./pages/CodeEditor";
 import NotFound from "./pages/NotFound";
 
@@ -24,6 +26,8 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/problems" element={<Problems />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/contests" element={<Contests />} />
+          <Route path="/create-contest" element={<CreateContest />} />
           <Route path="/editor/:problemId" element={<CodeEditor />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
