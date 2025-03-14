@@ -85,7 +85,7 @@ export const DiscussionThread = ({
           Best Answer
         </div>
       )}
-      <CardHeader className="py-4 space-y-0 flex flex-row justify-between">
+      <CardHeader className="py-4 space-y-0 flex flex-col sm:flex-row justify-between">
         <div className="flex items-center gap-3">
           <Avatar>
             <AvatarImage src={user.avatar} alt={user.name} />
@@ -100,7 +100,7 @@ export const DiscussionThread = ({
             </div>
           </div>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-2 !mt-4 ">
           {tags.map((tag, index) => (
             <ThreadTag key={index} name={tag.name} color={tag.color} />
           ))}
