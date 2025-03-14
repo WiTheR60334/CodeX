@@ -78,7 +78,7 @@ const FeatureSection = () => {
         </div>
         
         {/* Feature showcase */}
-        <div className="mt-20 rounded-2xl glass-dark p-8 animate-fade-in [animation-delay:500ms]">
+        <div className="mt-20 rounded-2xl glass-dark p-4 sm:p-8 animate-fade-in [animation-delay:500ms] mb-[-5rem] sm:mb-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold">Real-time AI Feedback</h3>
@@ -106,7 +106,7 @@ const FeatureSection = () => {
               </ul>
             </div>
             
-            <div className="relative aspect-video w-full rounded-xl overflow-hidden glass p-1">
+            <div className="relative h-[300px] aspect-video w-full rounded-xl overflow-hidden glass p-1">
               <div className="relative w-full h-full bg-card rounded-lg border-2 overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-10 flex items-center gap-2 px-4 border-b border-border">
                   <div className="flex gap-2">
@@ -146,7 +146,7 @@ function improvedMergeArrays(arr1, arr2) {
                   </pre>
                   
                   {/* AI analysis popup */}
-                  <div className="absolute bottom-4 right-4 glass-dark px-3 py-2 rounded-lg text-xs max-w-[220px] animate-float">
+                  <div className="hidden sm:block absolute bottom-4 right-4 glass-dark px-3 py-2 rounded-lg text-xs max-w-[220px] backdrop-blur-md border-2 border-border animate-float">
                     <div className="flex items-center gap-2 mb-2">
                       <BrainCircuit className="h-3.5 w-3.5 text-primary" />
                       <span className="font-semibold">AI Analysis</span>
