@@ -15,6 +15,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isDashboard = location.pathname === '/dashboard';
+  const isProfile = location.pathname === '/profile';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,8 +53,10 @@ const Navbar = () => {
                 Progress
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <UserRound className="mr-2 h-4 w-4" />
-                Profile
+              <Link to="/profile" className="flex items-center gap-2 w-full">
+                <UserRound className="h-4 w-4" />
+                <span>Profile</span>
+              </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Settings className="mr-2 h-4 w-4" />
@@ -80,6 +83,57 @@ const Navbar = () => {
         </div>
       );
     }
+
+    if (isProfile) {
+      return (
+        <div className="flex items-center gap-2">
+          <DarkModeToggle />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="h-8 w-8 rounded-full border border-border"
+              >
+                <span className="font-semibold">R</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem>
+                <BarChart className="mr-2 h-4 w-4" />
+                Progress
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+              <Link to="/profile" className="flex items-center gap-2 w-full">
+                <UserRound className="h-4 w-4" />
+                <span>Profile</span>
+              </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Settings className="mr-2 h-4 w-4" />
+                Settings
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-destructive">
+                <LogOut className="mr-2 h-4 w-4" />
+                Logout
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <div className="flex items-center gap-4 lg:hidden">
+          <button 
+            className="text-foreground ml-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
+        </div>
+      );
+    }
+
 
     return (
       <div className="hidden lg:flex items-center gap-4">
@@ -122,9 +176,8 @@ const Navbar = () => {
             </Link>
           ))}
         </nav>
-        
-        {/* Dark Mode Toggle & Mobile Menu Button */}
-        {isDashboard?
+
+        {isDashboard || isProfile?
         <span></span>
         :
         <div className="flex items-center gap-4 lg:hidden">
@@ -142,7 +195,42 @@ const Navbar = () => {
       </div>
       }
         
+        {/* Dark Mode Toggle & Mobile Menu Button */}
+        {/* {isDashboard?
+        <span></span>
+        :
+        <div className="flex items-center gap-4 lg:hidden">
+        <DarkModeToggle />
+        <button 
+          className="text-foreground"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
+        </button>
+      </div>
+      } */}
 
+        {/* {isProfile?
+        <span></span>
+        :
+        <div className="flex items-center gap-4 lg:hidden">
+        <DarkModeToggle />
+        <button 
+          className="text-foreground"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
+        </button>
+      </div>
+      } */}
         {renderAuthButtons()}
       </div>
       
