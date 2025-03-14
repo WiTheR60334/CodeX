@@ -2,6 +2,9 @@
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingUp } from "lucide-react";
+import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
+import { cn } from "@/lib/utils";
+import { useEffect } from "react";
 
 const data = [
   { day: "Mon", problems: 4 },
@@ -40,6 +43,29 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 };
 
 export const ProgressChart = () => {
+  // Add CSS variables to document root for light/dark mode chart colors
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      :root {
+        --chart-stroke: #000000;
+        --chart-grid: #000000;
+        --chart-axis: #000000;
+      }
+      
+      .dark {
+        --chart-stroke: #FFFFFF;
+        --chart-grid: #FFFFFF;
+        --chart-axis: #FFFFFF;
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
   return (
     <Card className="col-span-1 md:col-span-2 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -61,8 +87,8 @@ export const ProgressChart = () => {
             >
               <defs>
                 <linearGradient id="colorProblems" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#000000" stopOpacity={0.1} />
-                  <stop offset="95%" stopColor="#000000" stopOpacity={0} />
+                  <stop offset="5%" stopColor="var(--chart-stroke, #000000)" stopOpacity={0.1} />
+                  <stop offset="95%" stopColor="var(--chart-stroke, #000000)" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <XAxis 
@@ -71,19 +97,26 @@ export const ProgressChart = () => {
                 tickLine={false}
                 tick={{ fontSize: 12 }}
                 tickMargin={10}
+                stroke="var(--chart-axis, currentColor)"
               />
               <YAxis 
                 axisLine={false}
                 tickLine={false}
                 tick={{ fontSize: 12 }}
                 tickMargin={10}
+                stroke="var(--chart-axis, currentColor)"
               />
-              <CartesianGrid vertical={false} strokeDasharray="3 3" opacity={0.2} />
+              <CartesianGrid 
+                vertical={false} 
+                strokeDasharray="3 3" 
+                opacity={0.2} 
+                stroke="var(--chart-grid, currentColor)"
+              />
               <Tooltip content={<CustomTooltip />} />
               <Area 
                 type="monotone" 
                 dataKey="problems" 
-                stroke="#000000" 
+                stroke="var(--chart-stroke, #000000)" 
                 strokeWidth={2}
                 fillOpacity={1} 
                 fill="url(#colorProblems)" 
