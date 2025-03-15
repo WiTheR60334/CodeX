@@ -1,69 +1,101 @@
-# Welcome to your Lovable project
+# CodeX – A Better Frontend for Competitive Programming  
 
-## Project info
+CodeX is a **modern, intuitive, and visually appealing frontend** for competitive programming platforms, designed to offer a better UI/UX than **LeetCode** and **CodeForces**.  
 
-**URL**: https://lovable.dev/projects/4bdff573-d6ea-4127-8e87-3c62b4a01ee7
+⚡ Built with **Vite + React + TypeScript**, CodeX focuses **only on frontend development**, with **no backend** integration.  
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🌟 Features  
 
-**Use Lovable**
+✅ **Landing Page** – Engaging UI to introduce users to the platform.  
+✅ **Dashboard** – Personalized workspace for tracking coding activity.  
+✅ **Problem Selection Page** – Filter and choose problems based on difficulty and topics.  
+✅ **Code Editor Page** – Interactive editor with AI-assisted debugging and execution.  
+✅ **Leaderboard** – Ranks users based on performance and achievements.  
+✅ **Custom Contest Builder** – Allows users to create and manage their own contests.  
+✅ **Profile & Progress Tracking** – Displays coding stats, badges, and achievements.  
+✅ **Community Forum** – Discuss problems, share solutions, and get help.  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4bdff573-d6ea-4127-8e87-3c62b4a01ee7) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tech Stack  
 
-**Use your preferred IDE**
+- **Frontend:** Vite + React.js + TypeScript  
+- **Styling:** TailwindCSS  
+- **UI/UX Design:** Figma
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 📂 Folder Structure  
 
-Follow these steps:
+```bash
+CodeX/
+│── public/         # Static assets (images, fonts, icons)
+│── src/
+│   ├── components/ # Reusable UI components
+│   ├── pages/      # Individual pages (Landing, Dashboard, Editor, etc.)
+│   ├── lib/        # For utils 
+│   ├── hooks/     # For mobile devices and local-storage
+│── README.md       # Project documentation
+│── index.html      # Main index file 
+│── package.json    # Dependencies and scripts
+│── tsconfig.json   # TypeScript configuration
+│── vite.config.ts  # Vite configuration
+│── .gitignore      # Ignored files and folders
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+## 🚀 Getting Started
+1️⃣ Clone the Repository
+```bash
+git clone https://github.com/WiTheR60334/CodeX.git
+cd CodeX
 ```
 
-**Edit a file directly in GitHub**
+2️⃣ Install Dependencies
+```bash
+npm i  # or yarn install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3️⃣ Run the Project
+```bash
+npm run dev  # or yarn dev
+Open http://localhost:8080 in your browser to explore CodeX.
+```
 
-**Use GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🎨 UI/UX Principles Used
 
-## What technologies are used for this project?
+✅ **Universal Usability** – Accessible to all users with a clean and intuitive design.
 
-This project is built with .
+✅ **Gamification** – Leaderboard and badges to boost engagement.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+✅ **Informative Feedback** – Clear status indicators and real-time feedback.
 
-## How can I deploy this project?
+✅ **Consistency** – Unified design language for seamless navigation.
 
-Simply open [Lovable](https://lovable.dev/projects/4bdff573-d6ea-4127-8e87-3c62b4a01ee7) and click on Share -> Publish.
 
-## I want to use a custom domain - is that possible?
+## 📢 Contributing
+💡 Contributions are welcome! If you’d like to improve CodeX, feel free to:
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+
+- Open an issue for bug reports or feature requests.
+- Submit a pull request with your changes.
+- Suggest UI/UX improvements in discussions.
+
+
+## 📜 License
+This project is open-source and available under the MIT License.
+
+
+## 🔗 Live Demo 
+Website Link : https://codee-x.vercel.app
+
+👨‍💻 Developer: **Romir Bedekar**
+
+📧 Contact: enderwither1234@gmail.com
+
+
