@@ -31,6 +31,7 @@ const Navbar = () => {
     { name: 'Contests', path: '/contests' },
     { name: 'Leaderboard', path: '/leaderboard' },
     { name: 'Community', path: '/community' },
+    { name: 'Subscription', path: '/subscription' },
   ];
 
   const renderAuthButtons = () => {
