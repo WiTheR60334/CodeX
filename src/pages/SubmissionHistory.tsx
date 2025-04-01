@@ -8,13 +8,22 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Clock, MemoryStick, ArrowLeft, ArrowRight, GitCompareArrows, RotateCcw } from 'lucide-react';
 
+const formatDate = (timestamp: string) => {
+    return new Date(timestamp).toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    });
+};
+
+
 // Mock data for submissions
 const mockSubmissions = [
   {
     id: "sub-1",
     problemId: "1",
     problemTitle: "Two Sum",
-    timestamp: "2023-11-23T14:20:00Z",
+    timestamp: "2024-11-23T14:20:00Z",
     status: "Accepted",
     runtime: "56ms",
     memory: "42.1MB",
@@ -25,7 +34,7 @@ const mockSubmissions = [
     id: "sub-2",
     problemId: "1",
     problemTitle: "Two Sum",
-    timestamp: "2023-11-23T14:15:00Z",
+    timestamp: "2024-11-23T14:15:00Z",
     status: "Wrong Answer",
     runtime: "58ms",
     memory: "42.3MB",
@@ -36,7 +45,7 @@ const mockSubmissions = [
     id: "sub-3",
     problemId: "2",
     problemTitle: "Merge Intervals",
-    timestamp: "2023-11-22T10:30:00Z",
+    timestamp: "2024-11-22T10:30:00Z",
     status: "Accepted",
     runtime: "68ms",
     memory: "36.5MB",
@@ -47,7 +56,7 @@ const mockSubmissions = [
     id: "sub-4",
     problemId: "3",
     problemTitle: "LRU Cache",
-    timestamp: "2023-11-21T16:45:00Z",
+    timestamp: "2024-11-21T16:45:00Z",
     status: "Time Limit Exceeded",
     runtime: "N/A",
     memory: "N/A",
@@ -145,7 +154,7 @@ const SubmissionHistory = () => {
                           onClick={() => handleSelectSubmission(submission.id)}
                         >
                           <TableCell className="font-medium">{submission.problemTitle}</TableCell>
-                          <TableCell>{new Date(submission.timestamp).toLocaleString()}</TableCell>
+                          <TableCell>{formatDate(submission.timestamp)}</TableCell>
                           <TableCell>
                             <Badge className={getStatusColor(submission.status)}>
                               {submission.status}
@@ -193,7 +202,7 @@ const SubmissionHistory = () => {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <h3 className="text-sm font-medium mb-2">
-                          {comparisonSubmissionData?.status} ({new Date(comparisonSubmissionData?.timestamp || "").toLocaleDateString()})
+                          {comparisonSubmissionData?.status} ({formatDate(selectedSubmissionData.timestamp)})
                         </h3>
                         <pre className="bg-muted p-3 rounded-md text-xs overflow-auto max-h-96">
                           {comparisonSubmissionData?.code}
@@ -201,7 +210,7 @@ const SubmissionHistory = () => {
                       </div>
                       <div>
                         <h3 className="text-sm font-medium mb-2">
-                          {selectedSubmissionData?.status} ({new Date(selectedSubmissionData?.timestamp || "").toLocaleDateString()})
+                          {selectedSubmissionData?.status} ({formatDate(selectedSubmissionData.timestamp)})
                         </h3>
                         <pre className="bg-muted p-3 rounded-md text-xs overflow-auto max-h-96">
                           {selectedSubmissionData?.code}
@@ -232,7 +241,7 @@ const SubmissionHistory = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="flex justify-between mb-4 text-sm text-muted-foreground">
-                      <div>Submitted: {new Date(selectedSubmissionData?.timestamp || "").toLocaleString()}</div>
+                      <div>Submitted: {formatDate(selectedSubmissionData.timestamp)}</div>
                       <div>Language: {selectedSubmissionData?.language}</div>
                     </div>
                     <div className="flex gap-4 mb-4">
