@@ -11,7 +11,8 @@ import Leaderboard from "./pages/Leaderboard";
 import Contests from "./pages/Contests";
 import CreateContest from "./pages/CreateContest";
 import Profile from "./pages/Profile";
-import Subscription from "./pages/Subscription"
+import Subscription from "./pages/Subscription";
+import ProblemVisualization from "./pages/ProblemVisualiation";
 import Community from "./pages/Community";
 import CodeEditor from "./pages/CodeEditor";
 import NotFound from "./pages/NotFound";
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/create-contest" element={<CreateContest />} />
           <Route path="/community" element={<Community />} />
           <Route path="/subscription" element={<Subscription />} />
+          <Route path="/problem/:problemId" element={<ProblemVisualization />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/editor/:problemId" element={<CodeEditor />} />
           <Route path="*" element={<NotFound />} />
