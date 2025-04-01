@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Code, Settings, LogOut, UserRound, BarChart, Menu, X } from 'lucide-react';
+import { Code, Settings, LogOut, UserRound, BarChart, Menu, X, Lightbulb, Award } from 'lucide-react';
 import DarkModeToggle from '@/components/DarkModeToggle';
 
 const Navbar = () => {
@@ -16,6 +16,8 @@ const Navbar = () => {
   const location = useLocation();
   const isDashboard = location.pathname === '/dashboard';
   const isProfile = location.pathname === '/profile';
+  const isSubmissionPage = location.pathname === '/submissions';
+  const isCertificationsPage = location.pathname === '/certifications';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,14 +52,22 @@ const Navbar = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
               <DropdownMenuItem>
-                <BarChart className="mr-2 h-4 w-4" />
-                Progress
+                <Link to="/submissions" className="flex items-center w-full">
+                <Lightbulb className="mr-2 h-4 w-4" />
+                Submissions
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
               <Link to="/profile" className="flex items-center gap-2 w-full">
                 <UserRound className="h-4 w-4" />
                 <span>Profile</span>
               </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link to="/certifications" className="flex items-center w-full">
+                <Award className="mr-2 h-4 w-4" />
+                Certifications
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Settings className="mr-2 h-4 w-4" />
@@ -85,7 +95,7 @@ const Navbar = () => {
       );
     }
 
-    if (isProfile) {
+    if (isProfile || isSubmissionPage || isCertificationsPage) {
       return (
         <div className="flex items-center gap-2">
           <DarkModeToggle />
@@ -100,14 +110,22 @@ const Navbar = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
               <DropdownMenuItem>
-                <BarChart className="mr-2 h-4 w-4" />
-                Progress
+                <Link to="/submissions" className="flex items-center w-full">
+                <Lightbulb className="mr-2 h-4 w-4" />
+                Submissions
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
               <Link to="/profile" className="flex items-center gap-2 w-full">
                 <UserRound className="h-4 w-4" />
                 <span>Profile</span>
               </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link to="/certifications" className="flex items-center w-full">
+                <Award className="mr-2 h-4 w-4" />
+                Certifications
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Settings className="mr-2 h-4 w-4" />
@@ -178,7 +196,7 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {isDashboard || isProfile?
+        {isDashboard || isCertificationsPage || isSubmissionPage || isProfile?
         <span></span>
         :
         <div className="flex items-center gap-4 lg:hidden">
