@@ -8,6 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Navbar from "@/components/Navbar";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Check, Info, CreditCard, CreditCardIcon, Shield, Star } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -154,22 +155,7 @@ const Subscription = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold">
-            CodeX
-          </Link>
-          <div className="flex items-center gap-4">
-            <DarkModeToggle />
-            <Link to="/dashboard">
-              <Button variant="outline" size="sm">
-                Back to Dashboard
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
+      <Navbar/>
       <main className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
