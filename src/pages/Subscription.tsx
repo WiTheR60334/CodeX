@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -7,7 +8,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Navbar from '@/components/Navbar';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Check, Info, CreditCard, CreditCardIcon, Shield, Star } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -104,8 +104,35 @@ const Subscription = () => {
     renewalDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
   });
 
+  // New state for card number validation
+  const [cardNumberError, setCardNumberError] = useState<string>("");
+  const [cardNumber, setCardNumber] = useState<string>("");
+
+  const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    
+    // Check if the input contains only numbers
+    if (value === "" || /^\d+$/.test(value)) {
+      setCardNumber(value);
+      setCardNumberError("");
+    } else {
+      setCardNumberError("Only numbers are allowed");
+    }
+  };
+
   const handlePaymentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate card number before proceeding
+    if (cardNumberError) {
+      toast({
+        title: "Validation Error",
+        description: "Please fix the errors before submitting",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsProcessing(true);
 
     setTimeout(() => {
@@ -127,8 +154,23 @@ const Subscription = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="container mt-24 mx-auto px-4 py-8 md:py-12">
+      <header className="border-b">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <Link to="/" className="text-2xl font-bold">
+            CodeX
+          </Link>
+          <div className="flex items-center gap-4">
+            <DarkModeToggle />
+            <Link to="/dashboard">
+              <Button variant="outline" size="sm">
+                Back to Dashboard
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <main className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">Upgrade Your Coding Journey</h1>
@@ -297,7 +339,13 @@ const Subscription = () => {
                             required
                             minLength={16}
                             maxLength={19}
+                            value={cardNumber}
+                            onChange={handleCardNumberChange}
+                            className={cardNumberError ? "border-destructive" : ""}
                           />
+                          {cardNumberError && (
+                            <p className="text-destructive text-sm mt-1">{cardNumberError}</p>
+                          )}
                         </div>
                         
                         <div className="grid grid-cols-2 gap-4">
@@ -323,7 +371,7 @@ const Subscription = () => {
                         <Button 
                           type="submit" 
                           className="w-full"
-                          disabled={isProcessing}
+                          disabled={isProcessing || !!cardNumberError}
                         >
                           {isProcessing ? "Processing..." : `Subscribe Now - ${formatPrice(plans.find(p => p.id === selectedPlan)?.price[billingCycle] || 0)}`}
                         </Button>
